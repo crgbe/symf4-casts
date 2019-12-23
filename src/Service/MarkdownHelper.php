@@ -4,12 +4,15 @@
 namespace App\Service;
 
 
+use App\Helper\LoggerTrait;
 use Michelf\MarkdownInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 
 class MarkdownHelper
 {
+    use LoggerTrait;
+
     private $cache;
     private $markdown;
     private $logger;
@@ -41,5 +44,11 @@ class MarkdownHelper
         }
 
         return  $item->get();
+    }
+
+    public function sendMessage($message){
+        $this->logInfo($message, [
+            'message' => $message,
+        ]);
     }
 }

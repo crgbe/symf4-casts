@@ -52,6 +52,7 @@ cow est ribeye adipisicing. Pig hamburger pork belly enim. Do porchetta minim ca
 fugiat
 EOF;
         $articleContent = $markdownHelper->parse($articleContent);
+        $markdownHelper->sendMessage("Hey! I'm kind of currently coding like James Bond");
 
         $comments = [
             'You are so fast when coding now !!!',
