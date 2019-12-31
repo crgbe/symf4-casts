@@ -93,6 +93,9 @@
     "knplabs/knp-markdown-bundle": {
         "version": "1.8.1"
     },
+    "knplabs/knp-time-bundle": {
+        "version": "v1.10.0"
+    },
     "michelf/php-markdown": {
         "version": "1.9.0"
     },
@@ -109,7 +112,7 @@
         "version": "2.2.3"
     },
     "php": {
-        "version": "7.2"
+        "version": "7.3"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -322,6 +325,22 @@
     },
     "symfony/stopwatch": {
         "version": "v4.4.1"
+    },
+    "symfony/templating": {
+        "version": "v4.4.2"
+    },
+    "symfony/translation": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "2ad9d2545bce8ca1a863e50e92141f0b9d87ffcd"
+        },
+        "files": [
+            "config/packages/translation.yaml",
+            "translations/.gitignore"
+        ]
     },
     "symfony/translation-contracts": {
         "version": "v2.0.1"
