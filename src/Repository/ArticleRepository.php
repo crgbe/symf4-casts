@@ -6,6 +6,7 @@ use App\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @method Article|null find($id, $lockMode = null, $lockVersion = null)
@@ -25,9 +26,8 @@ class ArticleRepository extends ServiceEntityRepository
       */
     public function findAllPublishedOrderedByNewest()
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.publishedAt IS NOT NULL')
-            ->orderBy('a.publishedAt', 'DESC')
+         return  $this->addIsPublishedQueryBuilder()
+             ->orderBy('a.publishedAt', 'DESC')
             ->getQuery()
             ->getResult()
         ;
@@ -43,5 +43,14 @@ class ArticleRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult()
         ;
+    }
+
+    private function addIsPublishedQueryBuilder(QueryBuilder $qb=null){
+        return $this->returnOrCreateQueryBuilder($qb)
+            ->andWhere('a.publishedAt IS NOT NULL');
+    }
+
+    private function returnOrCreateQueryBuilder(QueryBuilder $qb=null){
+        return $qb ?: $this->createQueryBuilder('a');
     }
 }

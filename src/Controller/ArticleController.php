@@ -40,13 +40,10 @@ class ArticleController extends AbstractController
     /**
      * @Route("/show/{slug}", name="article_show")
      */
-    public function show($slug, ArticleRepository $articleRepository){
-        /** @var Article $article */
-        $article = $articleRepository->findOneBySlug($slug);
-
-        if(!$article){
-            throw $this->createNotFoundException(sprintf("Article with slug: '%s' does not exist", $slug));
-        }
+    public function show(Article $article, ArticleRepository $articleRepository){
+//        if(!$article){
+//            throw $this->createNotFoundException(sprintf("Article with slug: '%s' does not exist", $slug));
+//        }
 
         $comments = [
             'You are so fast when coding now !!!',
