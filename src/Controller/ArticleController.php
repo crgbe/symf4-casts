@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Entity\Article;
+use App\Repository\ArticleRepository;
 use App\Service\MarkdownHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
@@ -25,22 +26,23 @@ class ArticleController extends AbstractController
     /**
      * @Route("/", name="app_homepage")
      */
-    public function homepage(){
+    public function homepage(ArticleRepository $articleRepository){
+//        $articles = $em->getRepository(Article::class)->findBy([], ['publishedAt' => 'DESC']);
+        $articles = $articleRepository->findAllPublishedOrderedByNewest();
         $name = "This is the homepage";
 
         return $this->render('article/homepage.html.twig', [
             'title' => $name,
+            'articles' => $articles,
         ]);
     }
 
     /**
-     * @Route("/show/{slug}")
+     * @Route("/show/{slug}", name="article_show")
      */
-    public function show($slug, EntityManagerInterface $em){
-        $repository = $em->getRepository(Article::class);
-
+    public function show($slug, ArticleRepository $articleRepository){
         /** @var Article $article */
-        $article = $repository->findOneBy(['slug' => $slug]);
+        $article = $articleRepository->findOneBySlug($slug);
 
         if(!$article){
             throw $this->createNotFoundException(sprintf("Article with slug: '%s' does not exist", $slug));
