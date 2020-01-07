@@ -60,11 +60,18 @@ class ArticleController extends AbstractController
     /**
      * @Route("news/{slug}/heart", name="article_toggle_heart", methods={"POST"})
      */
-    public function toggleHeart($slug, LoggerInterface $logger){
+    public function toggleHeart(Article $article, LoggerInterface $logger, EntityManagerInterface $em){
+        if(!$article){
+            throw $this->createNotFoundException("There is no article with that slug available in the database.");
+        }
+
+        $article->incrementHeartCount();
+        $em->flush();
+
         $logger->info("The article is being loved");
 
         return $this->json([
-            'hearts' => rand(5, 100),
+            'hearts' => $article->getHeartCount(),
         ]);
     }
 }
