@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
+use App\Repository\CommentRepository;
 use App\Service\MarkdownHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
@@ -40,20 +41,13 @@ class ArticleController extends AbstractController
     /**
      * @Route("/show/{slug}", name="article_show")
      */
-    public function show(Article $article, ArticleRepository $articleRepository){
+    public function show(Article $article){
 //        if(!$article){
 //            throw $this->createNotFoundException(sprintf("Article with slug: '%s' does not exist", $slug));
 //        }
 
-        $comments = [
-            'You are so fast when coding now !!!',
-            'Remember at your beginning, you did not even know what to write',
-            'hhhh!!! You little kind boy :D'
-        ];
-
         return $this->render('article/show.html.twig', [
             'article' => $article,
-            'comments' => $comments,
         ]);
     }
 
