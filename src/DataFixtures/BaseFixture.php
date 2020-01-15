@@ -16,6 +16,8 @@ abstract class BaseFixture extends Fixture
     /**@var Generator*/
     protected $faker;
 
+    private $referencesIndex = [];
+
     public function load(ObjectManager $manager)
     {
         $this->manager = $manager;
@@ -34,5 +36,25 @@ abstract class BaseFixture extends Fixture
             // store for usage later as App\Entity\ClassName_#COUNT#
             $this->addReference($className . '_' . $i, $entity);
         }
+    }
+
+    protected function getRandomReferences(string $classname){
+        if(!isset($this->referencesIndex[$classname])){
+            $this->referencesIndex[$classname] = [];
+
+            foreach($this->referenceRepository->getReferences() as $key => $ref){
+                if(strpos($key, $classname.'_') === 0){
+                    $this->referencesIndex[$classname][] = $key;
+                }
+            }
+
+            if(empty($this->referencesIndex[$classname])){
+                throw new \Exception(sprintf("Cannot find any reference for class '%s'.", $classname));
+            }
+        }
+
+        $randomReference = $this->faker->randomElement($this->referencesIndex[$classname]);
+
+        return $this->getReference($randomReference);
     }
 }
