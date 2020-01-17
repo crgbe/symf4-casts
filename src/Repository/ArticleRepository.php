@@ -28,6 +28,7 @@ class ArticleRepository extends ServiceEntityRepository
     public function findAllPublishedOrderedByNewest()
     {
          return  $this->addIsPublishedQueryBuilder()
+//             ->addCriteria(self::createNonDeletedCriteria())
              ->orderBy('a.publishedAt', 'DESC')
             ->getQuery()
             ->getResult()
@@ -53,7 +54,7 @@ class ArticleRepository extends ServiceEntityRepository
         return $qb ?: $this->createQueryBuilder('a');
     }
 
-    public static function nonDeletedCriteria(){
+    public static function createNonDeletedCriteria(){
         return Criteria::create()
             ->andWhere(Criteria::expr()->eq('isDeleted', false))
             ;

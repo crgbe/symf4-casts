@@ -184,7 +184,7 @@ class Article
      */
     public function getNonDeletedComments(): Collection
     {
-        return $this->comments->matching(ArticleRepository::nonDeletedCriteria());
+        return $this->comments->matching(ArticleRepository::createNonDeletedCriteria());
     }
 
     public function addComment(Comment $comment): self
