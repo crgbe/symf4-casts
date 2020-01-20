@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\CommentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CommentAdminController extends AbstractController
@@ -11,9 +12,13 @@ class CommentAdminController extends AbstractController
     /**
      * @Route("/admin/comment", name="comment_admin")
      */
-    public function index(CommentRepository $commentRepository)
+    public function index(CommentRepository $commentRepository, Request $request)
     {
-        $comments = $commentRepository->findBy([], ['createdAt' => 'DESC']);
+//        $q = $request->query->get('q');
+//        $comments = $commentRepository->findBy([], ['createdAt' => 'DESC']);
+//        if($request->query->get('q')){
+            $comments = $commentRepository->findAllBySearch($request->query->get('q'));
+//        }
 
         return $this->render('comment_admin/index.html.twig', [
             'comments' => $comments,

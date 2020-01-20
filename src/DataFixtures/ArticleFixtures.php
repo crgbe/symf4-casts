@@ -9,9 +9,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 class ArticleFixtures extends BaseFixture
 {
     private static $articleTitles = [
-        'One question: How to be best PHP/Symfony developper ?',
+        'One question: How to be better PHP/Symfony developper ?',
         'Secret trick: How to code great in PHP/Symfony ?',
-        'Conception: The best way the create an incredible app',
+        'Conception: The best way to create an incredible app',
         'Angular !!!: The big controversal Symfony competitor',
     ];
 
