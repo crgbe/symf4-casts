@@ -32,7 +32,7 @@ class CommentRepository extends ServiceEntityRepository
             ->addSelect('a')
         ;
 
-            return $qb->andWhere('c.content LIKE :searchItem OR c.authorName LIKE :searchItem OR a.title LIKE :searchItem')
+        return $qb->andWhere('c.content LIKE :searchItem OR c.authorName LIKE :searchItem OR a.title LIKE :searchItem')
             ->setParameter('searchItem', '%' . $searchItem . '%')
             ->orderBy('c.createdAt', 'DESC')
         ;

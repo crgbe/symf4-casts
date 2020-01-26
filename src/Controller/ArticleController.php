@@ -29,6 +29,7 @@ class ArticleController extends AbstractController
      */
     public function homepage(ArticleRepository $articleRepository){
 //        $articles = $em->getRepository(Article::class)->findBy([], ['publishedAt' => 'DESC']);
+        /**@var $articles Article[]*/
         $articles = $articleRepository->findAllPublishedOrderedByNewest();
         $name = "This is the homepage";
 

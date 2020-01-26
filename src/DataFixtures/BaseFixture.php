@@ -38,7 +38,7 @@ abstract class BaseFixture extends Fixture
         }
     }
 
-    protected function getRandomReferences(string $classname){
+    protected function getRandomReference(string $classname){
         if(!isset($this->referencesIndex[$classname])){
             $this->referencesIndex[$classname] = [];
 
@@ -56,5 +56,15 @@ abstract class BaseFixture extends Fixture
         $randomReference = $this->faker->randomElement($this->referencesIndex[$classname]);
 
         return $this->getReference($randomReference);
+    }
+
+    public function getRandomReferences(string $classname, int $count){
+        $references = [];
+
+        while (count($references) < $count){
+            $references[] = $this->getRandomReference($classname);
+        }
+
+        return $references;
     }
 }
