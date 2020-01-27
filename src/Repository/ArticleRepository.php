@@ -28,10 +28,12 @@ class ArticleRepository extends ServiceEntityRepository
     public function findAllPublishedOrderedByNewest()
     {
          return  $this->addIsPublishedQueryBuilder()
+             ->leftJoin('a.tags', 't')
+             ->addSelect('t')
 //             ->addCriteria(self::createNonDeletedCriteria())
              ->orderBy('a.publishedAt', 'DESC')
-            ->getQuery()
-            ->getResult()
+             ->getQuery()
+             ->getResult()
         ;
     }
 
