@@ -28,13 +28,17 @@ abstract class BaseFixture extends Fixture
 
     abstract protected function loadData(ObjectManager $manager);
 
-    protected function createMany(string $className, int $count, callable $factory){
+    protected function createMany(int $count, string $groupName, callable $factory){
         for($i = 0; $i < $count; $i++){
-            $entity = new $className();
-            $factory($entity, $i);
+            $entity = $factory($i);
+
+            if(null === $entity){
+                throw new \LogicException('Did you forget to return the entity object from your callback to BaseFixture::createMany()?');
+            }
+
             $this->manager->persist($entity);
-            // store for usage later as App\Entity\ClassName_#COUNT#
-            $this->addReference($className . '_' . $i, $entity);
+            // store for usage later as groupName_#COUNT#
+            $this->addReference(sprintf('%s_%d', $groupName, $i), $entity);
         }
     }
 

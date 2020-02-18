@@ -28,9 +28,11 @@ class ArticleFixtures extends BaseFixture implements DependentFixtureInterface
         'mysql_developper.png',
     ];
 
-    public function loadData(ObjectManager $manager)
+    protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(Article::class, 10, function(Article $article, $count){
+        $this->createMany(10, Article::class, function(){
+            $article = new Article();
+
             $article->setTitle($this->faker->randomElement(self::$articleTitles))
                 ->setContent(<<<EOF
 Spicy jalapeno **bacon ipsum dolor** amet veniam shank in dolore. Ham hock nisi landjaeger cow,
@@ -64,6 +66,8 @@ EOF);
             foreach($tagList as $tag){
                 $article->addTag($tag);
             }
+
+            return $article;
         });
 
         $manager->flush();
