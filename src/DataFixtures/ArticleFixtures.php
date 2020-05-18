@@ -23,9 +23,9 @@ class ArticleFixtures extends BaseFixture implements DependentFixtureInterface
     ];
 
     private static $articleImages = [
-        'coding_game.jpeg',
-        'symfony.png',
-        'mysql_developper.png',
+        'lightspeed.png',
+        'asteroid.jpeg',
+        'mercury.jpeg',
     ];
 
     protected function loadData(ObjectManager $manager)
