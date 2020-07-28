@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "64e87f00dcf6c31952cae78bc0f25a69",
+    "content-hash": "7b4f496dbc0748b3c903a6154bc03665",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1510,16 +1510,16 @@
         },
         {
             "name": "knplabs/knp-paginator-bundle",
-            "version": "v5.1.0",
+            "version": "v5.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpPaginatorBundle.git",
-                "reference": "4d5e7e5e9b6b618c0995f3f906b584c6db3786db"
+                "reference": "787174799b8de92287865566dce9e0625015f8ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpPaginatorBundle/zipball/4d5e7e5e9b6b618c0995f3f906b584c6db3786db",
-                "reference": "4d5e7e5e9b6b618c0995f3f906b584c6db3786db",
+                "url": "https://api.github.com/repos/KnpLabs/KnpPaginatorBundle/zipball/787174799b8de92287865566dce9e0625015f8ff",
+                "reference": "787174799b8de92287865566dce9e0625015f8ff",
                 "shasum": ""
             },
             "require": {
@@ -1542,7 +1542,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.1.x-dev"
+                    "dev-master": "5.2.x-dev"
                 }
             },
             "autoload": {
@@ -1575,7 +1575,7 @@
                 "paginator",
                 "symfony"
             ],
-            "time": "2020-01-16T07:53:51+00:00"
+            "time": "2020-04-28T06:16:13+00:00"
         },
         {
             "name": "laminas/laminas-code",

@@ -8,7 +8,7 @@
         "ext-json": "*",
         "fzaninotto/faker": "^1.9",
         "knplabs/knp-markdown-bundle": "^1.8",
-        "knplabs/knp-paginator-bundle": "^5.1",
+        "knplabs/knp-paginator-bundle": "^5.2",
         "laminas/laminas-code": "^3.4",
         "sensio/framework-extra-bundle": "^5.5",
         "stof/doctrine-extensions-bundle": "^1.3",
