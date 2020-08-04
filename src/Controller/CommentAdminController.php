@@ -4,10 +4,14 @@ namespace App\Controller;
 
 use App\Repository\CommentRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @IsGranted("ROLE_ADMIN")
+ */
 class CommentAdminController extends AbstractController
 {
     /**
@@ -15,6 +19,9 @@ class CommentAdminController extends AbstractController
      */
     public function index(CommentRepository $commentRepository, Request $request, PaginatorInterface $paginator)
     {
+//        You can either use this, or the annotation form @IsGranted("ROLE_ADMIN")
+//        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
 //        $q = $request->query->get('q');
 //        $comments = $commentRepository->findBy([], ['createdAt' => 'DESC']);
 //        if($request->query->get('q')){
