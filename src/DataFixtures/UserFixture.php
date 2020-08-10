@@ -21,8 +21,24 @@ class UserFixture extends BaseFixture
             $user = new User();
 
             $user
-                ->setEmail(sprintf('username%d@spacebar.com', $currentCount))
+                ->setEmail(sprintf('username%d@thespacebar.com', $currentCount))
                 ->setFirstname($this->faker->firstName)
+            ;
+
+            $user->setPassword($this->passwordEncoder->encodePassword(
+                $user,
+                'engage'));
+
+            return $user;
+        });
+
+        $this->createMany(3, 'admin_users', function($currentCount){
+            $user = new User();
+
+            $user
+                ->setEmail(sprintf('admin%d@thespacebar.com', $currentCount))
+                ->setFirstname($this->faker->firstName)
+                ->setRoles(['ROLE_ADMIN'])
             ;
 
             $user->setPassword($this->passwordEncoder->encodePassword(

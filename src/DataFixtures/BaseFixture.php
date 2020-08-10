@@ -29,7 +29,7 @@ abstract class BaseFixture extends Fixture
     abstract protected function loadData(ObjectManager $manager);
 
     protected function createMany(int $count, string $groupName, callable $factory){
-        for($i = 0; $i < $count; $i++){
+        for($i = 1; $i <= $count; $i++){
             $entity = $factory($i);
 
             if(null === $entity){
