@@ -8,6 +8,7 @@ use App\Helper\LoggerTrait;
 use Michelf\MarkdownInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
+use Symfony\Component\Security\Core\Security;
 
 class MarkdownHelper
 {
@@ -17,19 +18,29 @@ class MarkdownHelper
     private $markdown;
     private $logger;
     private $isDebug;
+    private $security;
 
-    public function __construct(AdapterInterface $cache, MarkdownInterface $markdown, LoggerInterface $markdownLogger, bool $isDebug)
+    public function __construct(
+        AdapterInterface $cache,
+        MarkdownInterface $markdown,
+        LoggerInterface $markdownLogger,
+        bool $isDebug,
+        Security $security
+    )
     {
         $this->cache = $cache;
         $this->markdown = $markdown;
         $this->logger = $markdownLogger;
         $this->isDebug = $isDebug;
+        $this->security = $security;
     }
 
     public function parse(string $source): string {
 
         if(stripos($source, 'bacon')){
-            $this->logger->info("This article is talking about bacon !!!");
+            $this->logger->info("This article is talking about bacon !!!", [
+                'user' => $this->security->getUser(),
+            ]);
         }
 
         if($this->isDebug){
